@@ -1,0 +1,24 @@
+<header class="bg-red-600 h-[100px]">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <div class="flex lg:flex-1">
+      <a routerLink="/" class="-m-1.5 p-1.5">
+        <span class="sr-only">DEMALE</span>
+        <img class="h-[60px] w-[60px] rounded-lg" src="assets/img/web2.png" alt="">
+      </a>
+    </div>
+
+    <div class="hidden lg:flex lg:gap-x-12">
+        <a routerLink="/envio" routerLinkActive="active" class="text-sm/6 font-semibold text-white hover:text-yellow-200">ENVÍO</a>
+        <a routerLink="/rastreo" routerLinkActive="active" class="text-sm/6 font-semibold text-white hover:text-yellow-200">RASTREO</a>
+        <a routerLink="/soluciones" routerLinkActive="active" class="text-sm/6 font-semibold text-white hover:text-yellow-200">SOLUCIONES PARA NEGOCIOS</a>
+    </div>
+
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <button class="bg-yellow-300 rounded-xl h-[30px] w-[150px] hover:bg-yellow-100">
+            <a routerLink="/sesion" class="text-sm font-semibold text-gray-900">INICIAR SESIÓN ></a>
+        </button>
+    </div>
+  </nav>
+</header>
+
+<router-outlet />
