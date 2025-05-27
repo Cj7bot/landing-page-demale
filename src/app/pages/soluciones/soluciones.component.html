@@ -1,1 +1,76 @@
-<p>soluciones works!</p>
+<app-header></app-header>
+<section class="bg-gray-100 py-16 px-4">
+  <!-- Hero Section -->
+  <div class="max-w-6xl mx-auto text-left mb-16">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">Herramientas de envío para empresas</h1>
+    <p class="text-lg text-gray-700 mb-6 max-w-3xl">
+      Conozca nuestras herramientas y regístrese para que un experto de Demale se ponga en contacto con usted y le ofrezca asesoramiento personalizado de última generación.
+    </p>
+    <a routerLink="/contacto" class="inline-block bg-yellow-400 hover:bg-yellow-300 text-white font-semibold py-2 px-5 rounded-full transition transform active:scale-95 cursor-pointer select-none">
+      Hablar con un experto
+    </a>
+  </div>
+
+  <!-- Opciones destacadas -->
+  <div class="text-center mb-16">
+    <h2 class="text-3xl font-bold text-gray-900 mb-2">Vaya más allá del envío y el rastreo</h2>
+    <p class="text-gray-600 mb-10">Simplifique todos los aspectos de su negocio.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="p-6 bg-white rounded-lg shadow text-left">
+        <img src="assets/icon/box.svg" alt="Envio único" class="w-[60px] mb-4">
+        <h3 class="text-lg font-semibold mb-2">Crear un envío único</h3>
+        <a routerLink="/envios" class="text-blue-600 font-medium hover:underline cursor-pointer select-none">Envíe ahora ></a>
+      </div>
+      <div class="p-6 bg-white rounded-lg shadow text-left">
+        <img src="assets/icon/deliver.svg" alt="Expandirse" class="w-[60px] mb-4">
+        <h3 class="text-lg font-semibold mb-2">Expándase a todo el Perú</h3>
+        <a routerLink="/negocio" class="text-blue-600 font-medium hover:underline cursor-pointer select-none">Haga crecer su negocio ></a>
+      </div>
+      <div class="p-6 bg-white rounded-lg shadow text-left">
+        <img src="assets/icon/cards.svg" alt="Etiqueta" class="w-[60px] mb-4">
+        <h3 class="text-lg font-semibold mb-2">Crear e imprimir etiquetas de envío</h3>
+        <a routerLink="/etiquetas" class="text-blue-600 font-medium hover:underline cursor-pointer select-none">Crear una etiqueta ></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ver todos los envíos -->
+  <div class="bg-white py-10 px-4 shadow-inner rounded-xl max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 md:space-x-10">
+    <img src="assets/img/dash.png" alt="Panel" class="w-[150px] md:w-1/2 rounded-lg">
+    <div class="text-left max-w-xl">
+      <h2 class="text-3xl font-bold mb-4">Ver todos los envíos en un solo panel</h2>
+      <p class="text-gray-600 mb-6">Gestione sus envíos, cambie entregas y reciba alertas con My Choice para empresas. Todo desde un solo panel.</p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a routerLink="/sesion" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-5 py-2 rounded-full text-sm transform active:scale-95 cursor-pointer select-none">Iniciar sesión</a>
+        <a routerLink="/registro" class="bg-yellow-400 hover:bg-yellow-300 text-white font-medium px-5 py-2 rounded-full text-sm transform active:scale-95 cursor-pointer select-none">Regístrese gratis</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gran volumen -->
+  <div class="text-center mt-20">
+    <h2 class="text-3xl font-bold mb-2">Simplifique los envíos de gran volumen</h2>
+    <p class="text-gray-600 mb-10">Podemos hacerlo más fácil.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div class="bg-white p-6 rounded-lg shadow text-left">
+        <h3 class="font-semibold text-lg mb-2">Envíe hasta 250 paquetes a la vez</h3>
+        <p class="text-gray-600 mb-2">Ahorre tiempo cargando varios pedidos al mismo tiempo.</p>
+        <a href="#" class="text-blue-600 hover:underline font-medium">Ir a Envío por lotes ></a>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow text-left">
+        <h3 class="font-semibold text-lg mb-2">Automatizar envíos de gran volumen</h3>
+        <p class="text-gray-600 mb-2">Simplifique los envíos internacionales masivos con nuestro dashboard.</p>
+        <a href="#" class="text-blue-600 hover:underline font-medium">Ir a Dash ></a>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow text-left">
+        <h3 class="font-semibold text-lg mb-2">Haga un seguimiento de todo a la vez</h3>
+        <p class="text-gray-600 mb-2">Use Viewers para gestionar grandes volúmenes fácilmente.</p>
+        <a href="#" class="text-blue-600 hover:underline font-medium">Ir a Viewers ></a>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>
+<router-outlet></router-outlet>

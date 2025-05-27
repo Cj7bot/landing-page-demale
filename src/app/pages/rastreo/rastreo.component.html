@@ -1,1 +1,57 @@
-<p>rastreo works!</p>
+<app-header></app-header>
+<section class="py-16 bg-white border-t border-gray-200">
+  <div class="max-w-3xl mx-auto px-4 text-center">
+
+    <!-- Título -->
+    <h2 class="text-3xl font-bold text-gray-700 tracking-wide flex items-center justify-center gap-2 mb-10">
+      <span class="inline-block w-2 h-6 bg-red-600 rounded-sm"></span>
+      SEGUIMIENTO DE ENVÍOS
+    </h2>
+
+    <!-- Formulario -->
+    <form (submit)="buscarEnvio(); $event.preventDefault()" class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+
+        <!-- Número de tracking -->
+        <div>
+          <label class="block font-semibold text-sm text-gray-800 mb-1">NÚMERO DE TRACKING</label>
+          <input
+            type="text"
+            [(ngModel)]="trackingNumber"
+            name="tracking"
+            placeholder="Escriba el número de tracking"
+            class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          />
+          <p class="text-xs text-gray-500 mt-1">Corresponde al número de seguimiento que desea consultar.</p>
+        </div>
+
+        <!-- Año de emisión -->
+        <div>
+          <label class="block font-semibold text-sm text-gray-800 mb-1">AÑO DE EMISIÓN</label>
+          <select
+            [(ngModel)]="year"
+            name="year"
+            class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          >
+            <option disabled selected value="">Selecciona un año</option>
+            <option *ngFor="let y of [2025, 2024, 2023, 2022, 2021, 2020]">{{ y }}</option>
+          </select>
+          <p class="text-xs text-gray-500 mt-1">Corresponde al año de creación del tracking.</p>
+        </div>
+
+      </div>
+
+      <!-- Botón -->
+      <div class="pt-4">
+        <button
+          type="submit"
+          class="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-2 rounded shadow transition transform active:scale-95"
+        >
+          Enviar
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+<app-footer></app-footer>
+<router-outlet></router-outlet>

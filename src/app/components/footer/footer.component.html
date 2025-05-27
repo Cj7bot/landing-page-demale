@@ -1,1 +1,52 @@
-<p>footer works!</p>
+<footer class="bg-red-600 text-white">
+  <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center md:items-start space-y-8 md:space-y-0">
+
+    <!-- Logo y dirección -->
+    <div class="flex items-start space-x-4 md:space-x-6">
+      <img src="assets/img/web1.png" alt="Demale Logo" class="w-24 h-auto rounded-lg"/>
+      <div class="space-y-1">
+        <p class="font-semibold">DEMALE OPERADOR LOGÍSTICO</p>
+        <p class="text-sm">AV. Bellavista 749<br/>Callao - Perú</p>
+        <div class="flex items-center space-x-2 mt-2">
+          <!-- Icono teléfono (Heroicon) -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+          </svg>
+
+          <span class="text-sm">444-4444</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Términos y redes -->
+    <div class="flex flex-col md:items-end space-y-4">
+      <p class="text-sm">
+        Para más información, revisa nuestros:
+        <a routerLink="/terminos" class="underline hover:text-gray-200">Términos &amp; Condiciones</a>
+      </p>
+
+      <div class="text-center md:text-right space-y-1">
+        <p class="font-semibold">Síguenos en nuestras redes</p>
+        <div class="flex justify-center md:justify-end space-x-3 mt-2">
+          <!-- Reemplaza src por tus iconos reales en assets/icons/ -->
+          <a href="#" aria-label="Facebook">
+            <img src="assets/icon/facebook_logo.svg" alt="Facebook" class="w-6 h-6"/>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <img src="assets/icon/tik_tok_logo.svg" alt="TikTok" class="w-6 h-6"/>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <img src="assets/icon/linkedin_logo.svg" alt="LinkedIn" class="w-6 h-6"/>
+          </a>
+          <a href="#" aria-label="WhatsApp">
+            <img src="assets/icon/whatsapp_logo.svg" alt="WhatsApp" class="w-6 h-6"/>
+          </a>
+          <a href="#" aria-label="X (Twitter)">
+            <img src="assets/icon/twitter_x_logo.svg" alt="X" class="w-6 h-6"/>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</footer>

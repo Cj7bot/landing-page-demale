@@ -1,1 +1,44 @@
-<h1 class="text-3xl text-black font-semibold">¿Cómo podemos ayudarte?</h1>
+<app-header></app-header>
+<section class="max-w-6xl mx-auto px-4 py-12">
+  <h2 class="text-3xl font-bold mb-6 border-b-4 border-yellow-400 inline-block">¿Cómo podemos ayudar?</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+
+    <!-- Restablecer contraseña -->
+    <div class="border rounded-lg p-6 shadow-lg">
+      <h3 class="text-2xl font-semibold mb-2">Restablecimiento de contraseña</h3>
+      <p class="text-sm text-gray-600 mb-4">
+        ¿Olvidó su contraseña? Cree una nueva. Ingrese su dirección de correo electrónico y nombre de usuario para comenzar.
+      </p>
+      <input type="text" placeholder="Nombre de usuario"
+             class="w-full border rounded px-4 py-2 mb-4 outline-none focus:ring focus:ring-yellow-300" />
+      <input type="email" placeholder="Correo electrónico"
+             class="w-full border rounded px-4 py-2 mb-4 outline-none focus:ring focus:ring-yellow-300" />
+      <button
+        class="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold py-2 px-6 rounded-full transition transform active:scale-95">
+        Restablecer mi contraseña →
+      </button>
+    </div>
+
+    <!-- Recuperar usuario -->
+    <div class="border rounded-lg p-6 shadow-lg">
+      <h3 class="text-2xl font-semibold mb-2">Recuperar nombre de usuario</h3>
+      <p class="text-sm text-gray-600 mb-4">
+        ¿No recuerda su nombre de usuario? Ingrese su dirección de correo electrónico y le enviaremos un recordatorio.
+      </p>
+      <input type="email" placeholder="Correo electrónico"
+             class="w-full border rounded px-4 py-2 mb-4 outline-none focus:ring focus:ring-yellow-300" />
+      <button
+        class="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold py-2 px-6 rounded-full transition transform active:scale-95">
+        Recuperar mi ID →
+      </button>
+    </div>
+    <a
+      routerLink="/sesion"
+      class="inline-block bg-yellow-400 text-white font-semibold py-1 px-5 w-[200px] rounded-full hover:bg-yellow-300 transition transform active:scale-95 select-none"
+    >
+  Volver a iniciar sesión
+</a>
+
+  </div>
+</section>

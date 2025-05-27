@@ -1,0 +1,42 @@
+<div class="relative w-full overflow-hidden">
+  <!-- contenedor que se desliza -->
+  <div
+    class="flex transition-transform duration-700 ease-in-out"
+    [style.transform]="'translateX(-' + currentSlide * 100 + '%)'"
+  >
+    <div
+      *ngFor="let slide of slides"
+      class="w-full flex-shrink-0 relative h-full"
+    >
+      <img
+        [src]="slide.src"
+        [alt]="slide.title"
+        class="w-full h-auto object-contain"
+      />
+
+      <!-- botón superpuesto -->
+      <div class="absolute bottom-8 right-8 z-10">
+        <a
+          routerLink="/saber-mas"
+          class="bg-red-600 text-white px-5 py-2 rounded font-semibold hover:bg-red-700 transition"
+        >
+          SABER MÁS
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- controles -->
+  <button
+    (click)="prevSlide()"
+    class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-gray-400 text-black p-2 rounded-full shadow"
+  >
+    ←
+  </button>
+  <button
+    (click)="nextSlide()"
+    class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-gray-400 text-black p-2 rounded-full shadow"
+  >
+    →
+  </button>
+</div>
