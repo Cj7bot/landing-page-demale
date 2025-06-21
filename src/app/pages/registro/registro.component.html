@@ -1,3 +1,5 @@
+<!-- Agrega esta línea en tu index.html <head> si no lo has hecho -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <div class="min-h-screen flex">
   <!-- Formulario lado izquierdo -->
@@ -7,47 +9,81 @@
       <div class="flex justify-center mb-6">
         <img src="assets/img/web2.png" alt="Logo" class="h-[80px] w-[80px]">
       </div>
+
       <h2 class="text-3xl font-bold text-gray-900 mb-2">Crea tu cuenta</h2>
       <p class="mb-6 text-gray-500 text-sm">
-        ¿Ya tienes cuenta? <a routerLink="/sesion" class="text-indigo-600 hover:underline">Inicia sesión</a>
+        ¿Ya tienes cuenta?
+        <a routerLink="/sesion" class="text-indigo-600 hover:underline">Inicia sesión</a>
       </p>
-      <form class="space-y-5">
+
+      <form class="space-y-5" (ngSubmit)="registrar()" #f="ngForm">
+
         <div>
           <label for="name" class="block text-sm font-medium text-gray-700">Nombre completo</label>
-          <input id="name" name="name" type="text" required
-            class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2 bg-gray-50 transition"/>
+          <input id="name" name="name" type="text" required [(ngModel)]="usuario.nombre"
+            class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2 bg-gray-50 transition" />
         </div>
+
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
-          <input id="email" name="email" type="email" required
-            class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2 bg-gray-50 transition"/>
+          <input id="email" name="email" type="email" required [(ngModel)]="usuario.correo"
+            class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2 bg-gray-50 transition" />
         </div>
+
+        <!-- Contraseña -->
         <div>
           <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
-          <input id="password" name="password" type="password" required
-            class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2 bg-gray-50 transition"/>
+          <div class="relative">
+            <input [type]="mostrarPassword ? 'text' : 'password'" id="password" name="password" required
+              [(ngModel)]="usuario.contrasena"
+              class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2 bg-gray-50 transition" />
+            <button type="button" (click)="mostrarPassword = !mostrarPassword"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-600" tabindex="-1">
+              <span class="material-icons">
+                {{ mostrarPassword ? 'visibility_off' : 'visibility' }}
+              </span>
+            </button>
+          </div>
         </div>
+
+        <!-- Confirmar contraseña -->
         <div>
           <label for="confirm" class="block text-sm font-medium text-gray-700">Confirmar contraseña</label>
-          <input id="confirm" name="confirm" type="password" required
-            class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2 bg-gray-50 transition"/>
+          <div class="relative">
+            <input [type]="mostrarConfirmar ? 'text' : 'password'" id="confirm" name="confirm" required
+              [(ngModel)]="usuario.repetirContrasena"
+              class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2 bg-gray-50 transition" />
+            <button type="button" (click)="mostrarConfirmar = !mostrarConfirmar"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-600" tabindex="-1">
+              <span class="material-icons">
+                {{ mostrarConfirmar ? 'visibility_off' : 'visibility' }}
+              </span>
+            </button>
+          </div>
         </div>
+
+        <!-- Mensaje de error -->
+        <div *ngIf="mensajeError" class="text-red-600 text-sm text-center">
+          {{ mensajeError }}
+        </div>
+
         <button type="submit"
           class="w-full py-3 mt-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold transition text-lg shadow-lg transform active:scale-95">
           Registrarme
         </button>
       </form>
+
       <p class="mt-8 text-xs text-gray-400 text-center">
-        Al registrarte, aceptas nuestros <a href="#" class="underline">Términos</a> y <a href="#" class="underline">Política de privacidad</a>.
+        Al registrarte, aceptas nuestros
+        <a href="#" class="underline">Términos</a> y
+        <a href="#" class="underline">Política de privacidad</a>.
       </p>
     </div>
   </div>
+
   <!-- Imagen lado derecho -->
   <div class="hidden lg:block flex-1 relative">
-    <img
-      class="absolute inset-0 w-full h-full object-cover rounded-l-3xl"
-      src="assets/img/logistics.png"
-      alt="Fondo de registro"
-    />
+    <img class="absolute inset-0 w-full h-full object-cover rounded-l-3xl" src="assets/img/logistics.png"
+      alt="Fondo de registro" />
   </div>
 </div>

@@ -1,5 +1,6 @@
-<header class="bg-red-600 h-[100px]">
+<header class="bg-red-600">
   <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <!-- Logo -->
     <div class="flex lg:flex-1">
       <a routerLink="/" class="-m-1.5 p-1.5">
         <span class="sr-only">DEMALE</span>
@@ -7,22 +8,97 @@
       </a>
     </div>
 
-    <div class="hidden lg:flex lg:gap-x-12">
-        <a routerLink="/envio" routerLinkActive="active" class="text-md font-semibold text-white hover:text-yellow-200">ENVÍO</a>
-        <a routerLink="/rastreo" routerLinkActive="active" class="text-md font-semibold text-white hover:text-yellow-200">RASTREO</a>
-        <a routerLink="/soluciones" routerLinkActive="active" class="text-md font-semibold text-white hover:text-yellow-200">SOLUCIONES PARA NEGOCIOS</a>
+    <!-- Botón hamburguesa (solo móvil) -->
+    <div class="flex lg:hidden">
+      <button type="button" (click)="menuAbierto = !menuAbierto" class="text-white focus:outline-none">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path *ngIf="!menuAbierto" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          <path *ngIf="menuAbierto" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
     </div>
 
-    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-  <a
-    routerLink="/sesion"
-    class="bg-yellow-300 rounded-xl h-[30px] w-[150px] flex items-center justify-center hover:bg-yellow-100 text-sm font-semibold text-gray-900 transform active:scale-95"
-  >
-    INICIAR SESIÓN >
-  </a>
-</div>
+    <!-- Navegación principal (centrada en pantallas grandes) -->
+    <div class="hidden lg:flex lg:gap-x-12 lg:flex-1 lg:justify-center">
+      <a routerLink="/envio" class="text-md font-semibold text-white hover:text-yellow-200">ENVÍO</a>
+      <a routerLink="/rastreo" class="text-md font-semibold text-white hover:text-yellow-200">RASTREO</a>
+      <a routerLink="/soluciones" class="text-md font-semibold text-white hover:text-yellow-200">SOLUCIONES PARA NEGOCIOS</a>
+    </div>
 
+    <!-- SESIÓN O USUARIO DROPDOWN -->
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end relative">
+      <!-- Si NO ha iniciado sesión -->
+      <ng-container *ngIf="!isLoggedIn; else usuarioMenu">
+        <button
+          (click)="mostrarSesion = !mostrarSesion"
+          class="bg-yellow-300 rounded-xl h-[30px] w-[180px] flex items-center justify-center hover:bg-yellow-100 text-sm font-semibold text-gray-900 transform active:scale-95"
+        >
+          INICIAR SESIÓN ▼
+        </button>
+
+        <div
+          *ngIf="mostrarSesion"
+          class="absolute top-full mt-2 right-0 w-48 bg-white rounded-lg shadow-lg z-10"
+        >
+          <a routerLink="/sesion" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">CLIENTES</a>
+          <a routerLink="/empleado" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">EMPLEADOS</a>
+        </div>
+      </ng-container>
+
+      <!-- Si ha iniciado sesión -->
+      <ng-template #usuarioMenu>
+        <div class="relative group"
+            (mouseleave)="iniciarCierreMenu()"
+            (mouseenter)="cancelarCierreMenu()">
+
+          <button
+            class="flex items-center gap-2 bg-white rounded-xl h-[30px] px-3 shadow hover:bg-gray-100 font-semibold text-gray-800"
+            (click)="toggleMenu()"
+          >
+            <span class="material-icons text-2xl">account_circle</span>
+            <span>Hello, {{ nombreUsuario }}</span>
+            <span class="material-icons text-base">arrow_drop_down</span>
+          </button>
+
+          <div
+            *ngIf="mostrarMenuUsuario"
+            class="absolute right-0 top-full mt-2 w-44 bg-white rounded-lg shadow-lg z-20"
+          >
+            <a routerLink="/perfil"
+              (click)="cerrarMenu()"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+              Ver Perfil
+            </a>
+            <div
+              (click)="cerrarSesion()"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+              Cerrar Sesión
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
   </nav>
-</header>
 
-<router-outlet />
+  <!-- Menú móvil -->
+  <div *ngIf="menuAbierto" class="lg:hidden px-6 pb-4 space-y-2">
+    <a routerLink="/envio" class="block text-white font-semibold hover:text-yellow-200">ENVÍO</a>
+    <a routerLink="/rastreo" class="block text-white font-semibold hover:text-yellow-200">RASTREO</a>
+    <a routerLink="/soluciones" class="block text-white font-semibold hover:text-yellow-200">SOLUCIONES PARA NEGOCIOS</a>
+    <div class="mt-2 space-y-1">
+      <ng-container *ngIf="!isLoggedIn; else usuarioMenuMovil">
+        <a routerLink="/sesion" class="block bg-yellow-300 rounded-xl px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-yellow-100">CLIENTES</a>
+        <a routerLink="/sesion/empleado" class="block bg-yellow-300 rounded-xl px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-yellow-100">EMPLEADOS</a>
+      </ng-container>
+      <ng-template #usuarioMenuMovil>
+        <div class="flex items-center gap-2 bg-white rounded-xl px-3 py-2 shadow font-semibold text-gray-800">
+          <span class="material-icons text-2xl">account_circle</span>
+          <span>Hello, {{ nombreUsuario }}</span>
+        </div>
+        <a routerLink="/perfil" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Ver Perfil</a>
+        <div (click)="cerrarSesion()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Cerrar Sesión</div>
+      </ng-template>
+    </div>
+  </div>
+</header>
+<router-outlet></router-outlet>

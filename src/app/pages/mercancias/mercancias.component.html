@@ -1,1 +1,50 @@
-<p>mercancias works!</p>
+<app-header></app-header>
+<div class="px-6 py-10">
+  <!-- Banner -->
+  <div class="text-center mb-10">
+    <h1 class="text-3xl font-bold text-gray-800">MERCANCÍA PROHIBIDA POR LA LEGISLACIÓN PERUANA</h1>
+    <p class="mt-2 text-gray-600 text-xl">
+      Demale siempre se preocupa por tus paquetes, por quien lo envía y por quien lo recibe.
+      Por tal razón, queremos mantenerte informado y ayudarte a tomar precauciones al momento de hacer un envío.
+    </p>
+    <p class="mt-2 text-gray-600 text-xl">
+      Los productos que se mencionan a continuación no se aceptarán para transporte aéreo por ningún motivo, ya que pueden
+      poner en riesgo la salud, la seguridad y al medio ambiente.
+    </p>
+  </div>
+
+  <!-- Lista Prohibidos -->
+  <div class="grid md:grid-cols-2 gap-6">
+    <div>
+      <h2 class="text-3xl font-semibold text-yellow-600 mb-4">Prohibidos</h2>
+      <ul class="list-disc list-inside text-gray-700 space-y-1">
+        <li>Armas con o sin licencia.</li>
+        <li>Componentes de cualquier tipo de arma.</li>
+        <li>Marihuana, cocaína.</li>
+        <li>Bienes regulados por el Ministerio de Cultura.</li>
+        <li>Restos arqueológicos.</li>
+        <li>Joyas incaicas.</li>
+      </ul>
+    </div>
+    <div>
+      <img src="assets/img/armas.png" alt="armas prohibidas" class="rounded-xl shadow-md w-[450px] h-auto">
+    </div>
+  </div>
+
+  <!-- Productos perecibles -->
+  <div class="mt-14 grid md:grid-cols-2 gap-6">
+    <div>
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">PRODUCTOS PERECIBLES</h2>
+      <ul class="list-disc list-inside text-gray-700 space-y-1">
+        <li>Frutas.</li>
+        <li>Carnes (bovino, vacuno, aves).</li>
+      </ul>
+    </div>
+    <div>
+      <img src="assets/img/fruits.png" alt="frutas" class="rounded-xl shadow-md w-[450px] h-auto">
+    </div>
+  </div>
+  <p class="text-md md:text-base text-black mt-6">Si se detecta mercancía prohibida, esta no saldrá a despacho. Según el producto detectado, se actuará de acuerdo a la Resolución Directoral N° 040-2001-MTC/15.20. En el caso que el objeto tuviera que ser devuelto al remitente, este será resguardado en un plazo de 48 horas, de lo contrario será considerado rezagado.</p>
+</div>
+<app-footer></app-footer>
+<router-outlet></router-outlet>

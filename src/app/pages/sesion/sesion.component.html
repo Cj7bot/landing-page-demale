@@ -5,11 +5,12 @@
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form class="space-y-6" action="#" method="POST">
+    <form class="space-y-6" (ngSubmit)="login()">
       <div>
         <label for="email" class="block text-sm/6 font-medium text-gray-900">Correo Electrónico</label>
         <div class="mt-2">
-          <input type="email" name="email" id="email" autocomplete="email" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+          <input type="email" name="correo" id="email" autocomplete="email" required [(ngModel)]="credenciales.correo"
+            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
         </div>
       </div>
 
@@ -20,13 +21,32 @@
             <a routerLink="/pass" class="font-semibold text-indigo-600 hover:text-indigo-500">Olvidaste la contraseña?</a>
           </div>
         </div>
-        <div class="mt-2">
-          <input type="password" name="password" id="password" autocomplete="current-password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+        <div class="mt-2 relative">
+          <input [type]="mostrarPassword ? 'text' : 'password'" name="contrasena" id="password" autocomplete="current-password" required
+            [(ngModel)]="credenciales.contrasena"
+            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+          <button type="button" (click)="mostrarPassword = !mostrarPassword"
+            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-600" tabindex="-1">
+            <span class="material-icons">
+              {{ mostrarPassword ? 'visibility_off' : 'visibility' }}
+            </span>
+          </button>
         </div>
       </div>
 
       <div>
-        <button type="submit" class="flex w-full justify-center rounded-md bg-yellow-500 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-yellow-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transform active:scale-95">Inicia Sesión</button>
+        <button type="submit"
+          class="flex w-full justify-center rounded-md bg-yellow-500 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-yellow-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transform active:scale-95">
+          Inicia Sesión
+        </button>
+      </div>
+
+      <!-- MENSAJES -->
+      <div *ngIf="mensajeError" class="text-red-600 text-sm text-center mt-2">
+        {{ mensajeError }}
+      </div>
+      <div *ngIf="mensajeExito" class="text-green-600 text-sm text-center mt-2">
+        {{ mensajeExito }}
       </div>
     </form>
 

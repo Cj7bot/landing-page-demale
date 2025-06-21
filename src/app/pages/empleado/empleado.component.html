@@ -1,0 +1,35 @@
+<div class="min-h-screen flex flex-col items-center justify-center bg-gray-300 px-6 py-12">
+  <!-- Logo -->
+  <img src="assets/img/web2.png" alt="Logo" class="h-[60px] mb-6 rounded-2xl">
+
+  <!-- Título -->
+  <h2 class="text-2xl font-bold text-gray-900 mb-6">Inicio de Sesión - Empleados</h2>
+
+  <!-- Formulario -->
+  <form class="w-full max-w-sm space-y-4">
+    <!-- Correo -->
+    <div>
+      <label for="email" class="block text-sm font-medium text-gray-700">Correo Empresarial</label>
+      <input id="email" name="email" type="email" autocomplete="email" required
+             class="mt-1 block w-full rounded-md border border-blue-500 px-3 py-2 shadow-sm focus:ring-yellow-400 focus:border-yellow-400">
+    </div>
+
+    <!-- Contraseña -->
+    <div>
+      <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required
+             class="mt-1 block w-full rounded-md border border-blue-500 px-3 py-2 shadow-sm focus:ring-yellow-400 focus:border-yellow-400">
+      <div class="text-right mt-1">
+        <a href="#" class="text-sm text-blue-600 hover:underline">¿Olvidaste la contraseña?</a>
+      </div>
+    </div>
+
+    <!-- Botón -->
+    <div>
+      <button type="submit"
+              class="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400">
+        Iniciar Sesión
+      </button>
+    </div>
+  </form>
+</div>
