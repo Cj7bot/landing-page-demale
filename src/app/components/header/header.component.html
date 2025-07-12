@@ -1,16 +1,18 @@
-<header class="bg-red-600">
-  <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+<header class="bg-gradient-to-r from-red-600 to-red-700 shadow-lg">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8" aria-label="Global">
     <!-- Logo -->
     <div class="flex lg:flex-1">
-      <a routerLink="/" class="-m-1.5 p-1.5">
+      <a routerLink="/" class="group relative overflow-hidden rounded-xl transition-transform duration-300 hover:scale-105">
         <span class="sr-only">DEMALE</span>
-        <img class="h-[60px] w-[60px] rounded-lg" src="assets/img/web2.png" alt="">
+        <div class="absolute inset-0 bg-black/10 opacity-0 transition-opacity group-hover:opacity-100"></div>
+        <img class="h-[60px] w-auto rounded-xl shadow-md transition-all" src="assets/img/web2.png" alt="">
       </a>
     </div>
 
     <!-- Botón hamburguesa (solo móvil) -->
     <div class="flex lg:hidden">
-      <button type="button" (click)="menuAbierto = !menuAbierto" class="text-white focus:outline-none">
+      <button type="button" (click)="menuAbierto = !menuAbierto"
+        class="rounded-lg p-2 text-white hover:bg-red-500/20 focus:outline-none transition-colors">
         <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path *ngIf="!menuAbierto" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           <path *ngIf="menuAbierto" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -19,10 +21,19 @@
     </div>
 
     <!-- Navegación principal (centrada en pantallas grandes) -->
-    <div class="hidden lg:flex lg:gap-x-12 lg:flex-1 lg:justify-center">
-      <a routerLink="/envio" class="text-md font-semibold text-white hover:text-yellow-200">ENVÍO</a>
-      <a routerLink="/rastreo" class="text-md font-semibold text-white hover:text-yellow-200">RASTREO</a>
-      <a routerLink="/soluciones" class="text-md font-semibold text-white hover:text-yellow-200">SOLUCIONES PARA NEGOCIOS</a>
+    <div class="hidden lg:flex lg:gap-x-1 lg:flex-1 lg:justify-center">
+      <a routerLink="/envio"
+        class="rounded-lg px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-red-500/20 hover:text-yellow-200">
+        ENVÍO
+      </a>
+      <a routerLink="/rastreo"
+        class="rounded-lg px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-red-500/20 hover:text-yellow-200">
+        RASTREO
+      </a>
+      <a routerLink="/soluciones"
+        class="rounded-lg px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-red-500/20 hover:text-yellow-200">
+        SOLUCIONES PARA NEGOCIOS
+      </a>
     </div>
 
     <!-- SESIÓN O USUARIO DROPDOWN -->
@@ -31,17 +42,36 @@
       <ng-container *ngIf="!isLoggedIn; else usuarioMenu">
         <button
           (click)="mostrarSesion = !mostrarSesion"
-          class="bg-yellow-300 rounded-xl h-[30px] w-[180px] flex items-center justify-center hover:bg-yellow-100 text-sm font-semibold text-gray-900 transform active:scale-95"
+          class="group relative overflow-hidden bg-gradient-to-r from-yellow-300 to-yellow-400 rounded-xl px-6 py-2 text-sm font-medium text-gray-900 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95"
         >
-          INICIAR SESIÓN ▼
+          <span class="relative z-10 flex items-center gap-1">
+            INICIAR SESIÓN
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </span>
         </button>
 
         <div
           *ngIf="mostrarSesion"
-          class="absolute top-full mt-2 right-0 w-48 bg-white rounded-lg shadow-lg z-10"
+          class="absolute top-full mt-2 right-0 w-48 bg-white rounded-xl shadow-xl z-10 overflow-hidden transform origin-top-right transition-all duration-200"
         >
-          <a routerLink="/sesion" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">CLIENTES</a>
-          <a routerLink="/empleado" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">EMPLEADOS</a>
+          <a routerLink="/sesion" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+            <span class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+              </svg>
+              CLIENTES
+            </span>
+          </a>
+          <a routerLink="/empleado" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+            <span class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+              </svg>
+              EMPLEADOS
+            </span>
+          </a>
         </div>
       </ng-container>
 
@@ -52,26 +82,34 @@
             (mouseenter)="cancelarCierreMenu()">
 
           <button
-            class="flex items-center gap-2 bg-white rounded-xl h-[30px] px-3 shadow hover:bg-gray-100 font-semibold text-gray-800"
+            class="flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md hover:bg-white hover:shadow-lg transition-all duration-300 font-medium text-gray-800"
             (click)="toggleMenu()"
           >
-            <span class="material-icons text-2xl">account_circle</span>
+            <span class="material-icons text-2xl text-red-600">account_circle</span>
             <span>Hello, {{ nombreUsuario }}</span>
-            <span class="material-icons text-base">arrow_drop_down</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
           </button>
 
           <div
             *ngIf="mostrarMenuUsuario"
-            class="absolute right-0 top-full mt-2 w-44 bg-white rounded-lg shadow-lg z-20"
+            class="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-xl z-20 overflow-hidden transform origin-top-right transition-all duration-200"
           >
             <a routerLink="/perfil"
               (click)="cerrarMenu()"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+              class="flex items-center gap-2 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+              </svg>
               Ver Perfil
             </a>
             <div
               (click)="cerrarSesion()"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+              class="flex items-center gap-2 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd" />
+              </svg>
               Cerrar Sesión
             </div>
           </div>
@@ -81,22 +119,50 @@
   </nav>
 
   <!-- Menú móvil -->
-  <div *ngIf="menuAbierto" class="lg:hidden px-6 pb-4 space-y-2">
-    <a routerLink="/envio" class="block text-white font-semibold hover:text-yellow-200">ENVÍO</a>
-    <a routerLink="/rastreo" class="block text-white font-semibold hover:text-yellow-200">RASTREO</a>
-    <a routerLink="/soluciones" class="block text-white font-semibold hover:text-yellow-200">SOLUCIONES PARA NEGOCIOS</a>
-    <div class="mt-2 space-y-1">
+  <div *ngIf="menuAbierto"
+    class="lg:hidden px-4 pb-4 space-y-2 bg-gradient-to-b from-red-600/50 to-red-700/50 backdrop-blur-sm">
+    <a routerLink="/envio"
+      class="block rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-red-500/20">
+      ENVÍO
+    </a>
+    <a routerLink="/rastreo"
+      class="block rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-red-500/20">
+      RASTREO
+    </a>
+    <a routerLink="/soluciones"
+      class="block rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-red-500/20">
+      SOLUCIONES PARA NEGOCIOS
+    </a>
+    <div class="mt-4 space-y-2">
       <ng-container *ngIf="!isLoggedIn; else usuarioMenuMovil">
-        <a routerLink="/sesion" class="block bg-yellow-300 rounded-xl px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-yellow-100">CLIENTES</a>
-        <a routerLink="/sesion/empleado" class="block bg-yellow-300 rounded-xl px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-yellow-100">EMPLEADOS</a>
+        <a routerLink="/sesion"
+          class="block bg-gradient-to-r from-yellow-300 to-yellow-400 rounded-xl px-4 py-2.5 text-sm font-medium text-gray-900 shadow-md hover:shadow-lg transition-all">
+          CLIENTES
+        </a>
+        <a routerLink="/sesion/empleado"
+          class="block bg-gradient-to-r from-yellow-300 to-yellow-400 rounded-xl px-4 py-2.5 text-sm font-medium text-gray-900 shadow-md hover:shadow-lg transition-all">
+          EMPLEADOS
+        </a>
       </ng-container>
       <ng-template #usuarioMenuMovil>
-        <div class="flex items-center gap-2 bg-white rounded-xl px-3 py-2 shadow font-semibold text-gray-800">
-          <span class="material-icons text-2xl">account_circle</span>
-          <span>Hello, {{ nombreUsuario }}</span>
+        <div class="flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2.5 shadow-md">
+          <span class="material-icons text-2xl text-red-600">account_circle</span>
+          <span class="font-medium text-gray-800">Hello, {{ nombreUsuario }}</span>
         </div>
-        <a routerLink="/perfil" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Ver Perfil</a>
-        <div (click)="cerrarSesion()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Cerrar Sesión</div>
+        <a routerLink="/perfil"
+          class="flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm text-white hover:bg-red-500/20 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+          </svg>
+          Ver Perfil
+        </a>
+        <div (click)="cerrarSesion()"
+          class="flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm text-white hover:bg-red-500/20 transition-colors cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd" />
+          </svg>
+          Cerrar Sesión
+        </div>
       </ng-template>
     </div>
   </div>

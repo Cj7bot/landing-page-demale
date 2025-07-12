@@ -2,35 +2,95 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { RegistroService } from '../../services/registro.service';
+import { DocumentoService } from '../../services/documento.service';
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [
+    RouterLink,
+    CommonModule,
+    FormsModule,
+    HttpClientModule
+  ],
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent {
   usuario = {
+    numeroDocumento: '',
     nombre: '',
+    apellidos: '',
     correo: '',
     contrasena: '',
     repetirContrasena: ''
   };
 
-  mostrarPassword: boolean = false;
-  mostrarConfirmar: boolean = false;
-  mensajeError: string = '';
+  mostrarPassword  = false;
+  mostrarConfirmar = false;
+  mensajeError     = '';
+  mensajeDni       = '';
 
-  constructor(private registroService: RegistroService) {}
+  constructor(
+    private registroService: RegistroService,
+    private documentoService: DocumentoService
+  ) {}
+
+  buscarPersonaPorDni() {
+    this.mensajeDni = '';
+    const dni = this.usuario.numeroDocumento.trim();
+
+    if (dni.length !== 8) {
+      if (dni.length > 0) {
+        this.mensajeDni = 'El DNI debe tener 8 dígitos.';
+        this.usuario.nombre    = '';
+        this.usuario.apellidos = '';
+      }
+      return;
+    }
+
+    this.documentoService.consultarDocumento(dni)
+      .subscribe({
+        next: resp => {
+          if (!resp.success) {
+            this.usuario.nombre    = '';
+            this.usuario.apellidos = '';
+            this.mensajeDni = resp.errorMessage || 'No hay datos para ese DNI.';
+            return;
+          }
+
+          const info = resp.otherInfo || '';
+          const paternoMatch = info.match(/Apellido Paterno:\s*([^,;]+)/i);
+          const maternoMatch = info.match(/Apellido Materno:\s*([^,;]+)/i);
+          const paterno = paternoMatch ? paternoMatch[1].trim() : '';
+          const materno = maternoMatch ? maternoMatch[1].trim() : '';
+
+          const full  = resp.fullName || '';
+          const words = full
+            .split(' ')
+            .filter(w =>
+              w.toUpperCase() !== paterno.toUpperCase() &&
+              w.toUpperCase() !== materno.toUpperCase()
+            );
+
+          this.usuario.nombre    = words.join(' ');
+          this.usuario.apellidos = [paterno, materno].filter(Boolean).join(' ');
+        },
+        error: (err) => {
+          console.error('✖ Error backend:', err);
+          this.mensajeError = err?.error || 'Error al consultar el DNI.';
+        }
+      });
+  }
 
   registrar() {
     this.mensajeError = '';
 
-    // Validar campos vacíos o solo espacios
     if (
-      !this.usuario.nombre.trim() ||
+      !this.usuario.numeroDocumento.trim() ||
       !this.usuario.correo.trim() ||
       !this.usuario.contrasena.trim() ||
       !this.usuario.repetirContrasena.trim()
@@ -39,21 +99,30 @@ export class RegistroComponent {
       return;
     }
 
-    // Validar que las contraseñas coincidan
-    if (this.usuario.contrasena !== this.usuario.repetirContrasena) {
-      this.mensajeError = 'Las contraseñas no coinciden';
+    if (this.usuario.numeroDocumento.length !== 8) {
+      this.mensajeError = 'El DNI debe tener 8 dígitos.';
       return;
     }
 
-    const data = {
-      nombre: this.usuario.nombre,
+    if (this.usuario.contrasena !== this.usuario.repetirContrasena) {
+      this.mensajeError = 'Las contraseñas no coinciden.';
+      return;
+    }
+
+    const payload = {
       correo: this.usuario.correo,
-      contrasena: this.usuario.contrasena
+      contrasena: this.usuario.contrasena,
+      persona: {
+        numeroDocumento: this.usuario.numeroDocumento
+      }
     };
 
-    this.registroService.registrar(data).subscribe({
-      next: (msg) => alert(msg),
-      error: () => this.mensajeError = 'Error al registrar'
+    this.registroService.registrar(payload).subscribe({
+      next: () => alert('¡Registro exitoso!'),
+      error: (err) => {
+        console.error('✖ Error backend:', err);
+        this.mensajeError = err?.error || 'Error inesperado al registrar.';
+      }
     });
   }
 }

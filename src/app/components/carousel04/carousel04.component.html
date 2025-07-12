@@ -1,45 +1,76 @@
-<div class="relative w-full overflow-hidden">
+<div class="relative w-full overflow-hidden bg-[#ffffff]">
   <!-- Carril deslizable -->
   <div
     #trackRef
-    class="carousel-track flex transition-transform duration-700 ease-in-out"
+    class="carousel-track flex transition-all duration-700 ease-out"
     [style.transform]="'translateX(-' + currentSlide * 100 + '%)'"
   >
     <div
-      *ngFor="let slide of allSlides"
-      class="w-full flex-shrink-0 relative h-full"
+      *ngFor="let slide of allSlides; let i = index"
+      class="w-full flex-shrink-0 relative"
     >
-      <img
-        [src]="slide.src"
-        [alt]="slide.title"
-        class="w-full h-auto object-contain"
-      />
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-16">
+          <!-- Contenido -->
+          <div class="space-y-6 max-w-xl">
+            <!-- Tag de descuento -->
+            <span class="inline-block bg-red-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+              Servicio Premium
+            </span>
 
-      <!-- Botón -->
-      <div class="absolute bottom-8 right-8 z-10">
-        <a
-          routerLink="/saber-mas"
-          class="bg-red-600 text-white px-5 py-2 rounded font-semibold hover:bg-red-700 transition cursor-pointer"
-        >
-          SABER MÁS
-        </a>
+            <h2 class="text-3xl lg:text-4xl font-bold text-[#0A2540] leading-tight">
+              {{ slide.title }}
+            </h2>
+
+            <p class="text-gray-600 text-lg">
+              {{ slide.description }}
+            </p>
+
+            <!-- Botón Saber Más -->
+            <a
+              routerLink="/saber-mas"
+              class="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 transform transition-all duration-300 group/btn mt-4"
+            >
+              SABER MÁS
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300 group-hover/btn:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+
+            <!-- Badge de Envío Seguro -->
+            <div class="mt-8">
+              <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-lg">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm font-medium">Envío Seguro</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Imagen -->
+          <div class="relative flex justify-center">
+            <div class="w-full max-w-md relative">
+              <img
+                [src]="slide.src"
+                [alt]="slide.title"
+                class="w-full h-auto object-contain"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Controles -->
-  <button
-    (click)="prevSlide()"
-    class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-gray-400 text-black p-2 rounded-full shadow"
-    aria-label="Anterior"
-  >
-    ←
-  </button>
-  <button
-    (click)="nextSlide()"
-    class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-gray-400 text-black p-2 rounded-full shadow"
-    aria-label="Siguiente"
-  >
-    →
-  </button>
+  <!-- Indicadores de diapositivas (solo 2 puntos) -->
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3">
+    <ng-container *ngFor="let i of [0, 1]">
+      <button
+        (click)="goToSlide(i)"
+        [class]="'w-3 h-3 rounded-full transition-all duration-300 ' + ((currentSlide === 1 && i === 0) || (currentSlide === 2 && i === 1) ? 'bg-red-600' : 'bg-gray-400 hover:bg-gray-600')"
+        [attr.aria-label]="'Ir a diapositiva ' + (i + 1)"
+      ></button>
+    </ng-container>
+  </div>
 </div>

@@ -2,16 +2,11 @@
   <h2 class="text-3xl font-bold text-gray-900 mb-6">Perfil del Usuario</h2>
 
   <!-- Info del usuario -->
-  <div class="bg-white shadow-md rounded-lg p-6 mb-8" *ngIf="usuario; else cargando">
+  <div class="bg-white shadow-md rounded-lg p-6 mb-8" *ngIf="correo; else cargando">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
       <div>
-        <label class="block text-sm font-medium text-gray-700">Nombre completo</label>
-        <p class="mt-1 text-gray-900">{{ usuario.nombre }}</p>
-      </div>
-
-      <div>
         <label class="block text-sm font-medium text-gray-700">Correo electrónico</label>
-        <p class="mt-1 text-gray-900">{{ usuario.correo }}</p>
+        <p class="mt-1 text-gray-900">{{ correo }}</p>
       </div>
 
       <div>
@@ -65,12 +60,13 @@
       </table>
     </div>
   </div>
+
   <div class="mt-4">
-  <button
-  routerLink="/"
-  class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded shadow"
->
-  Volver al inicio
-</button>
-</div>
+    <button
+      routerLink="/"
+      class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded shadow"
+    >
+      Volver al inicio
+    </button>
+  </div>
 </section>

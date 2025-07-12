@@ -1,50 +1,105 @@
 <app-header></app-header>
-<div class="px-6 py-10">
-  <!-- Banner -->
-  <div class="text-center mb-10">
-    <h1 class="text-3xl font-bold text-gray-800">MERCANCÍA PROHIBIDA POR LA LEGISLACIÓN PERUANA</h1>
-    <p class="mt-2 text-gray-600 text-xl">
-      Demale siempre se preocupa por tus paquetes, por quien lo envía y por quien lo recibe.
-      Por tal razón, queremos mantenerte informado y ayudarte a tomar precauciones al momento de hacer un envío.
-    </p>
-    <p class="mt-2 text-gray-600 text-xl">
-      Los productos que se mencionan a continuación no se aceptarán para transporte aéreo por ningún motivo, ya que pueden
-      poner en riesgo la salud, la seguridad y al medio ambiente.
-    </p>
-  </div>
 
-  <!-- Lista Prohibidos -->
-  <div class="grid md:grid-cols-2 gap-6">
-    <div>
-      <h2 class="text-3xl font-semibold text-yellow-600 mb-4">Prohibidos</h2>
-      <ul class="list-disc list-inside text-gray-700 space-y-1">
-        <li>Armas con o sin licencia.</li>
-        <li>Componentes de cualquier tipo de arma.</li>
-        <li>Marihuana, cocaína.</li>
-        <li>Bienes regulados por el Ministerio de Cultura.</li>
-        <li>Restos arqueológicos.</li>
-        <li>Joyas incaicas.</li>
-      </ul>
+<!-- Hero Section con gradiente -->
+<div class="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <!-- Banner mejorado -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+        MERCANCÍA PROHIBIDA
+        <span class="block text-yellow-600">POR LA LEGISLACIÓN PERUANA</span>
+      </h1>
+      <div class="max-w-3xl mx-auto">
+        <p class="text-xl text-gray-600 leading-relaxed mb-4">
+          Demale siempre se preocupa por tus paquetes, por quien lo envía y por quien lo recibe.
+          Por tal razón, queremos mantenerte informado y ayudarte a tomar precauciones al momento de hacer un envío.
+        </p>
+        <p class="text-xl text-gray-600 leading-relaxed">
+          Los productos mencionados a continuación no se aceptarán para transporte aéreo por ningún motivo, ya que pueden
+          poner en riesgo la salud, la seguridad y al medio ambiente.
+        </p>
+      </div>
     </div>
-    <div>
-      <img src="assets/img/armas.png" alt="armas prohibidas" class="rounded-xl shadow-md w-[450px] h-auto">
-    </div>
-  </div>
 
-  <!-- Productos perecibles -->
-  <div class="mt-14 grid md:grid-cols-2 gap-6">
-    <div>
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">PRODUCTOS PERECIBLES</h2>
-      <ul class="list-disc list-inside text-gray-700 space-y-1">
-        <li>Frutas.</li>
-        <li>Carnes (bovino, vacuno, aves).</li>
-      </ul>
+    <!-- Sección Prohibidos con diseño mejorado -->
+    <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+      <div class="bg-white p-8 rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-300">
+        <h2 class="text-3xl font-bold text-yellow-600 mb-6 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          Productos Prohibidos
+        </h2>
+        <ul class="space-y-3 text-lg text-gray-700">
+          <li class="flex items-center">
+            <span class="h-2 w-2 bg-red-500 rounded-full mr-3"></span>
+            Armas con o sin licencia
+          </li>
+          <li class="flex items-center">
+            <span class="h-2 w-2 bg-red-500 rounded-full mr-3"></span>
+            Componentes de cualquier tipo de arma
+          </li>
+          <li class="flex items-center">
+            <span class="h-2 w-2 bg-red-500 rounded-full mr-3"></span>
+            Marihuana, cocaína
+          </li>
+          <li class="flex items-center">
+            <span class="h-2 w-2 bg-red-500 rounded-full mr-3"></span>
+            Bienes regulados por el Ministerio de Cultura
+          </li>
+          <li class="flex items-center">
+            <span class="h-2 w-2 bg-red-500 rounded-full mr-3"></span>
+            Restos arqueológicos
+          </li>
+          <li class="flex items-center">
+            <span class="h-2 w-2 bg-red-500 rounded-full mr-3"></span>
+            Joyas incaicas
+          </li>
+        </ul>
+      </div>
+      <div class="relative group">
+        <img src="assets/img/armas.png" alt="armas prohibidas" class="rounded-2xl shadow-xl w-full h-auto transform group-hover:scale-105 transition-transform duration-300">
+        <div class="absolute inset-0 bg-black bg-opacity-40 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </div>
     </div>
-    <div>
-      <img src="assets/img/fruits.png" alt="frutas" class="rounded-xl shadow-md w-[450px] h-auto">
+
+    <!-- Sección Perecibles con diseño mejorado -->
+    <div class="grid md:grid-cols-2 gap-12 items-center mb-12">
+      <div class="bg-white p-8 rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-300">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+          Productos Perecibles
+        </h2>
+        <ul class="space-y-3 text-lg text-gray-700">
+          <li class="flex items-center">
+            <span class="h-2 w-2 bg-yellow-500 rounded-full mr-3"></span>
+            Frutas
+          </li>
+          <li class="flex items-center">
+            <span class="h-2 w-2 bg-yellow-500 rounded-full mr-3"></span>
+            Carnes (bovino, vacuno, aves)
+          </li>
+        </ul>
+      </div>
+      <div class="relative group">
+        <img src="assets/img/fruits.png" alt="frutas" class="rounded-2xl shadow-xl w-full h-auto transform group-hover:scale-105 transition-transform duration-300">
+        <div class="absolute inset-0 bg-black bg-opacity-40 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </div>
+    </div>
+
+    <!-- Nota legal con diseño mejorado -->
+    <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+      <p class="text-gray-700 leading-relaxed">
+        Si se detecta mercancía prohibida, esta no saldrá a despacho. Según el producto detectado, se actuará de acuerdo a la
+        <span class="font-semibold text-yellow-600">Resolución Directoral N° 040-2001-MTC/15.20</span>.
+        En el caso que el objeto tuviera que ser devuelto al remitente, este será resguardado en un plazo de 48 horas,
+        de lo contrario será considerado rezagado.
+      </p>
     </div>
   </div>
-  <p class="text-md md:text-base text-black mt-6">Si se detecta mercancía prohibida, esta no saldrá a despacho. Según el producto detectado, se actuará de acuerdo a la Resolución Directoral N° 040-2001-MTC/15.20. En el caso que el objeto tuviera que ser devuelto al remitente, este será resguardado en un plazo de 48 horas, de lo contrario será considerado rezagado.</p>
 </div>
+
 <app-footer></app-footer>
 <router-outlet></router-outlet>

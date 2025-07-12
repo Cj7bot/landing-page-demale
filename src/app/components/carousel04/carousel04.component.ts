@@ -9,42 +9,62 @@ import {
   ElementRef,
 } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
-import { fromEvent, Subscription } from 'rxjs';
+import { fromEvent, Subscription, interval } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { RouterLink } from '@angular/router';
 
 interface Slide {
   src: string;
   title: string;
+  description: string;
 }
 
 @Component({
   standalone: true,
   selector: 'app-carousel04',
   templateUrl: './carousel04.component.html',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
 })
 export class Carousel04Component implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('trackRef') trackRef!: ElementRef<HTMLElement>;
 
   currentSlide = 1;
   allSlides: Slide[] = [];
-  private realSlides: Slide[] = [];
+  realSlides: Slide[] = [];
 
   private resizeSubscription?: Subscription;
+  private autoplaySubscription?: Subscription;
   private isBrowser: boolean;
   private isAnimating = false;
 
   private readonly transitionDuration = 700;
   private readonly MOBILE_BREAKPOINT = 768;
+  private readonly AUTOPLAY_INTERVAL = 5000; // 5 segundos
 
   private readonly mobileSlides: Slide[] = [
-    { src: 'assets/img/mobile-1.png', title: 'Slide móvil 1' },
-    { src: 'assets/img/mobile-2.png', title: 'Slide móvil 2' }
+    {
+      src: '',
+      title: 'CONECTANDO A MÁS PERSONAS Y CIUDADES',
+      description: 'Somos Demale, una empresa con más de 20 años en el rubro de envíos de paquetería y clientes satisfechos'
+    },
+    {
+      src: '',
+      title: 'LOGÍSTICA Y SERVICIOS 100% DIGITALES',
+      description: 'Utilizamos tecnología de punta para garantizar la mejor experiencia en tus envíos'
+    }
   ];
 
   private readonly desktopSlides: Slide[] = [
-    { src: 'assets/img/brand1.png', title: 'Slide escritorio 1' },
-    { src: 'assets/img/brand2.png', title: 'Slide escritorio 2' }
+    {
+      src: 'assets/img/car1.png',
+      title: 'CONECTANDO A MÁS PERSONAS Y CIUDADES',
+      description: 'Somos Demale, una empresa con más de 20 años en el rubro de envíos de paquetería y clientes satisfechos'
+    },
+    {
+      src: 'assets/img/car2.png',
+      title: 'LOGÍSTICA Y SERVICIOS 100% DIGITALES',
+      description: 'Utilizamos tecnología de punta para garantizar la mejor experiencia en tus envíos'
+    }
   ];
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
@@ -56,6 +76,7 @@ export class Carousel04Component implements OnInit, AfterViewInit, OnDestroy {
 
     this.setResponsiveSlides();
     this.listenToResize();
+    this.startAutoplay();
   }
 
   ngAfterViewInit(): void {
@@ -67,6 +88,9 @@ export class Carousel04Component implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.resizeSubscription) {
       this.resizeSubscription.unsubscribe();
+    }
+    if (this.autoplaySubscription) {
+      this.autoplaySubscription.unsubscribe();
     }
   }
 
@@ -82,6 +106,23 @@ export class Carousel04Component implements OnInit, AfterViewInit, OnDestroy {
     this.isAnimating = true;
     this.currentSlide--;
     this.resetLoopIfNeeded();
+  }
+
+  goToSlide(index: number): void {
+    if (this.isAnimating || this.currentSlide === index + 1) return;
+    this.isAnimating = true;
+    this.currentSlide = index + 1;
+    this.resetLoopIfNeeded();
+  }
+
+  private startAutoplay(): void {
+    if (!this.isBrowser) return;
+
+    this.autoplaySubscription = interval(this.AUTOPLAY_INTERVAL).subscribe(() => {
+      if (!this.isAnimating) {
+        this.nextSlide();
+      }
+    });
   }
 
   private setResponsiveSlides(): void {
