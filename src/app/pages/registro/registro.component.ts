@@ -26,7 +26,8 @@ export class RegistroComponent {
     apellidos: '',
     correo: '',
     contrasena: '',
-    repetirContrasena: ''
+    repetirContrasena: '',
+    idTipoDoc: 1
   };
 
   mostrarPassword  = false;
@@ -110,12 +111,14 @@ export class RegistroComponent {
     }
 
     const payload = {
+      numeroDocumento: this.usuario.numeroDocumento,
       correo: this.usuario.correo,
       contrasena: this.usuario.contrasena,
-      persona: {
-        numeroDocumento: this.usuario.numeroDocumento
+      tipoDocumento: {
+        idTipoDoc: this.usuario.idTipoDoc  // ✅ objeto, no valor plano
       }
     };
+
 
     this.registroService.registrar(payload).subscribe({
       next: () => alert('¡Registro exitoso!'),

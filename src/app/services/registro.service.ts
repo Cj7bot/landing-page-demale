@@ -3,13 +3,13 @@
   import { Observable } from 'rxjs';
 
   // Modelo de datos que se enviará al backend
-  export interface RegistroRequest {
-    correo: string;
-    contrasena: string;
-    persona: {
-      numeroDocumento: string;
-    };
-  }
+  // DESPUÉS:
+export interface RegistroRequest {
+  correo: string;
+  contrasena: string;
+  numeroDocumento: string;
+}
+
 
   @Injectable({
     providedIn: 'root'
